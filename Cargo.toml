@@ -1,0 +1,8 @@
+[package]
+name = "distrocfgen"
+version = "0.1.0"
+edition = "2024"
+description = "A Linux distribution configuration packages generator"
+
+[dependencies]
+inquire = "0.7.5"
