@@ -28,25 +28,63 @@ fn packages(profile: Profile) -> String {
     let mut list = String::new();
 
     let desktop = match profile.desktop {
-        "KDE Plasma" => "plasma kde-applications",
-        "GNOME" => "gnome gnome-extra",
-        "Xfce" => "xfce4 xfce4-goodies",
+        "KDE Plasma" => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "plasma kde-applications",
+            "Void Linux" => "kde-plasma kde-baseapps",
+            _ => "",
+        },
+        "GNOME" => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "gnome gnome-extra",
+            "Void Linux" => "gnome gnome-apps",
+            _ => "",
+        },
+        "Xfce" => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "xfce4 xfce4-goodies",
+            "Void Linux" => "xfce4 xfce4-plugins",
+            _ => "",
+        },
         "MATE" => "mate mate-extra",
-        "LXQt" => "lxqt featherpad",
-        "Cinnamon" => "cinnamon xed",
-        "Budgie" => "budgie gedit",
-        "LXDE" => "lxde-gtk3 mousepad",
-        "Enlightenment" => "enlightenment ecrire terminology ephoto rage",
+        "LXQt" => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "lxqt featherpad",
+            "Void Linux" => "lxqt FeatherPad",
+            _ => "",
+        }
+        "Cinnamon" => match profile.distro { 
+            "Arch Linux" | "Artix Linux" => "cinnamon xed",
+            "Void Linux" => "cinnamon gedit",
+            _ => "",
+        },
+        "Budgie" => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "budgie gedit",
+            "Void Linux" => "budgie-desktop budgie-desktop-view budgie-control-center budgie-screensaver gedit",
+            _ => "",
+        },
+        "LXDE" => match profile.desktop {
+            "Arch Linux" | "Artix Linux" => "lxde-gtk3 mousepad",
+            "Void Linux" => "lxde mousepad",
+            _ => "",
+        },
+        "Enlightenment" => match profile.desktop {
+            "Arch Linux" | "Artix Linux" => "enlightenment ecrire terminology ephoto rage",
+            "Void Linux" => "enlightenment terminology",
+            _ => "",
+        },
         _ => "",
     };
     let office = match profile.office {
-        true => "libreoffice-fresh",
+        true => match profile.distro {
+            "Arch Linux" | "Artix Linux" => "libreoffice-fresh",
+            _ => "libreoffice",
+        },
         _ => ""
     };
     let displaymanager = match profile.desktop {
         "KDE Plasma" | "LXQt" => "sddm",
         "GNOME" => "gdm",
-        "Xfce" | "MATE" | "Cinnamon" | "Budgie" | "LXDE" | "Enlightenment" => "lightdm",
+        "Xfce" | "MATE" | "Cinnamon" | "Budgie" | "LXDE" | "Enlightenment" => match profile.distro {
+            "Void Linux" => "lightdm lightdm-gtk3-greeter",
+            _ => "lightdm lightdm-gtk-greeter",
+        },
         _ => "",
     };
     let browser = match profile.browser {

@@ -31,7 +31,8 @@ fn get_list(category: &'static str) -> Vec<&'static str> {
     match category {
         "distro" => vec![
             "Arch Linux",
-            "Artix Linux"
+            "Artix Linux",
+            "Void Linux"
         ],
         "desktop" => vec![
             "KDE Plasma",
