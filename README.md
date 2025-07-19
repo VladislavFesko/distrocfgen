@@ -4,6 +4,7 @@ A Linux distribution configuration packages generator. Allows to select a deskto
 # Currently supported distributions
 * Arch Linux
 * Artix Linux
+* Void Linux
 
 # Currently supported software
 ## Desktop environment
