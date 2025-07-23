@@ -5,6 +5,7 @@ A Linux distribution configuration packages generator. Allows to select a deskto
 * Arch Linux
 * Artix Linux
 * Void Linux
+* Gentoo Linux
 
 # Currently supported software
 ## Desktop environment
